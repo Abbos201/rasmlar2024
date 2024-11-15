@@ -1,6 +1,10 @@
 {
     "builds": [
       {
+        "src": "public/index.php",
+        "use": "@vercel/php"
+      },
+      {
         "src": "vite.config.js",
         "use": "@vercel/node",
         "config": {
@@ -8,5 +12,14 @@
         }
       }
     ],
-    "outputDirectory": "public/build"
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "/public/index.php"
+      },
+      {
+        "src": "/build/(.*)",
+        "dest": "/public/build/$1"
+      }
+    ]
   }
